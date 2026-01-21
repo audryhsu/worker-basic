@@ -1,7 +1,8 @@
 {
-    "input": {
-        "prompt": "John Doe",
-        "seconds": 15,
-        "loop_count": 5
-    }
+  "input": {
+    "name": "John Doe",
+    "seconds": 5,
+    "loop_count": 5
+  }
 }
+

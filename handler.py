@@ -7,8 +7,9 @@ import runpod
 
 def handler(event: Dict[str, Any]) -> Dict[str, Any]:
     output: Dict[str, Any] = {
-        "prompt_received": None,
+        "input_name": None,
         "seconds_slept": 0,
+        "input_echo": None,
         "error": None,
     }
 
@@ -23,22 +24,22 @@ def handler(event: Dict[str, Any]) -> Dict[str, Any]:
             input_data = event
 
         # Extract optional fields, but don't fail if missing/invalid
-        prompt = None
+        name = None
         loop_count = 0
         if isinstance(input_data, dict):
             loop_count = input_data.get("loop_count", 0)
-            prompt = input_data.get("prompt")
+            name = input_data.get("name")
             seconds_raw = input_data.get("seconds", 0)
         else:
             seconds_raw = 0
 
-        if (loop_count > 0):
+        if loop_count > 0:
             counter = loop_count
             while counter > 0:
                 print(f"Looping {counter} times, sleeping for 5 seconds...")
                 time.sleep(5)
                 counter -= 1
-            return { "input_echo": input_data, "execution_time_seconds": 5 * loop_count }
+            return {"input_echo": input_data, "execution_time_seconds": 5 * loop_count}
 
         seconds = 0.0
         warnings = []
@@ -53,13 +54,13 @@ def handler(event: Dict[str, Any]) -> Dict[str, Any]:
             )
             seconds = 0.0
 
-        print(f"Received prompt: {prompt}")
+        print(f"Received name: {name}")
         print(f"Sleeping for {seconds} seconds...")
         time.sleep(seconds)
 
         output.update(
             {
-                "prompt_received": prompt,
+                "input_name": name,
                 "seconds_slept": seconds,
                 "input_echo": input_data,
             }

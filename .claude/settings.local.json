@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.runpod.io)",
+      "Bash(test:*)",
+      "Bash(docker build:*)",
+      "Bash(docker run:*)"
+    ]
+  }
+}
