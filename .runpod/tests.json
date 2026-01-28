@@ -1,7 +1,7 @@
 {
   "tests": [
     {
-      "name": "validation_text_input",
+      "name": "basic test",
       "input": {
         "text": "Hello world",
         "language": "en"
